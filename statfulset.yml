@@ -24,7 +24,7 @@ spec:
         #secret integration
         envFrom:
         - secretRef:
-            name: bankapp-secret   
+            name: bankapp-secret
 
 
 
