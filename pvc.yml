@@ -3,11 +3,14 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: myapp-pvc
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true  # Allow deletion
+    argocd.argoproj.io/sync-options: Replace=true  # Force replace
 spec:
-  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
-  storageClassName: local-path 
+  storageClassName: local-path  # ✅ Changed from gp2
   resources:
     requests:
       storage: 2Gi
