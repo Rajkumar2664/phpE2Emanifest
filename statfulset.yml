@@ -41,7 +41,7 @@ spec:
         #Volume Mount integration
         volumeMounts:
         - name: myapp-pvc
-          mountPath: /var/lib/mysql
+          mountPath: /usr/share/nginx/html/
 
   volumeClaimTemplates:
   - metadata:
