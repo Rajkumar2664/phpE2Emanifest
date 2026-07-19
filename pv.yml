@@ -1,4 +1,4 @@
-kubectl apply -f - << 'EOF'
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -14,4 +14,3 @@ spec:
     path: /mnt/data/mysql
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""  # Empty string means "match PVCs without storage class"
-EOF
