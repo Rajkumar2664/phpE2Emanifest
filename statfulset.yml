@@ -42,9 +42,7 @@ spec:
         volumeMounts:
         - name: myapp-pvc
           mountPath: /var/lib/mysql
-          volumeMounts:
-        - name: myapp-pvc
-          mountPath: /var/lib/mysql
+
   volumeClaimTemplates:
   - metadata:
       name: myapp-pvc
