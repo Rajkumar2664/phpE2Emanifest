@@ -1,0 +1,56 @@
+---
+apiVersion: app/v1
+kind: StatefulSet
+metadata:
+  name: myapp-statefulset
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: app-database
+  template:
+    metadata:
+      labels:
+        app: app-database
+    spec:
+      containers:
+      - name: dbapp-container
+        image: rajubingi2664/phpapp:dbimage
+        ports:
+        - containerPort: 3306
+
+
+        #secret integration
+        envFrom:
+        - secretRef:
+            name: bankapp-secret   
+
+
+
+        #resource quota integration
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"  
+
+
+        #Volume Mount integration
+        volumeMounts:
+        - name: myapp-pvc
+          mountPath: /var/lib/mysql
+          volumeMounts:
+        - name: myapp-pvc
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: myapp-pvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]    
+      resources:
+        requests:
+          storage: 2Gi  
+
+        
